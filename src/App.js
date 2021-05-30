@@ -1,19 +1,15 @@
 import './App.css';
-import {BrowserRouter, Switch, Route, Link} from "react-router-dom"
-import NavBar from "./Components/Navbar"
+import {ThemeProvider} from "@material-ui/core/styles"
+import theme from "./Components/themeConfig"
+import Contenedor from "./Components/Contenedor"
 
-//rfce [] {} #
-function App() {
+function App(props) {
   return (
-    <div>
-      <BrowserRouter>
-      <NavBar />
-          <Switch>
-            <Route path="/" />
-          </Switch>
-      </BrowserRouter>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Contenedor />
+    </ThemeProvider>
   );
 }
 
 export default App;
+

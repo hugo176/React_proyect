@@ -3,8 +3,6 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 
-//rfce [] {} #
-
 export const SidebarData = [
     {
         title: "Home", 
@@ -14,15 +12,15 @@ export const SidebarData = [
     },
 
     {
-        title: "Reports", 
-        path: "/reports",
+        title: "Nasa", 
+        path: "/nasa",
         icon: <IoIcons.IoIosPaper /> ,
         cName: "nav-text"
     },
 
     {
-        title: "Products", 
-        path: "/products",
+        title: "Pokemones", 
+        path: "/pokemones",
         icon: <IoIcons.IoMdPeople /> ,
         cName: "nav-text"
     },
