@@ -7,6 +7,7 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 /*personalizar los colores*/
 import {ThemeProvider} from "@material-ui/core/styles"
 import theme from "../../themeConfig"
+import Formulario from "./Formulario"
 
 //rfce [] {} # {/**/}
 const useStyles = makeStyles((theme) => ({
@@ -39,13 +40,7 @@ function Nasa() {
             </Typography>
 
             {/*Boton buscar*/}
-            <Button 
-              variant="contained" 
-              color="primary"
-              href="https://google.com"
-              endIcon={<SearchOutlinedIcon />}>
-              Buscar
-            </Button>
+           <Formulario /> 
           </Grid>
         </ThemeProvider>
     )

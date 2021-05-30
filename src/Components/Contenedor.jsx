@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Cajon from "./Cajon";
 import Cajita from "./Cajita";
 import Pokemones from "./pages/pokemon/Pokemones"
+import Nasa from "./pages/nasa/Nasa"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -52,7 +53,7 @@ const Contenedor = () => {
                 <div className={classes.toolbar}>
                 </div>
                 {/* <Cajita /> */}
-                <Pokemones />
+                <Nasa />
             </div>
         </div>
     )
