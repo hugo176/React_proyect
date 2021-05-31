@@ -8,6 +8,8 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import {ThemeProvider} from "@material-ui/core/styles"
 import theme from "../../themeConfig"
 import Formulario from "./Formulario"
+import { useState } from "react"
+import Galeria from "./Galeria"
 
 //rfce [] {} # {/**/}
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 function Nasa() {
 
     const classes = useStyles();
+    
+    const [fecha, setFecha] = useState()
 
     return(
         <ThemeProvider theme={theme}>
@@ -40,7 +44,9 @@ function Nasa() {
             </Typography>
 
             {/*Boton buscar*/}
-           <Formulario /> 
+            <Formulario getFecha = {(fecha) => setFecha(fecha)}/> 
+            <Galeria fecha={fecha}/>
+            {console.log(fecha)}
           </Grid>
         </ThemeProvider>
     )
