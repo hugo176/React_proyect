@@ -8,7 +8,9 @@ import Cajon from "./Cajon";
 import Cajita from "./Cajita";
 import Pokemones from "./pages/pokemon/Pokemones"
 import Nasa from "./pages/nasa/Nasa"
+import { BrowserRouter } from 'react-router-dom';
 
+/*estilos*/
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex"
@@ -24,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 /*Contenedor principal*/
 const Contenedor = () => {
 
+    /*constantes*/
     const classes = useStyles();
 
     const [abrir, setAbrir] = React.useState(false);
@@ -33,6 +36,7 @@ const Contenedor = () => {
         console.log("click")
     };
 
+    /*return*/
     return (
         <div className={classes.root}>
             <Navbar accionAbrir={accionAbrir} />
@@ -49,12 +53,7 @@ const Contenedor = () => {
                     onClose={accionAbrir}
                 />
             </Hidden>
-            <div className={classes.content}>
-                <div className={classes.toolbar}>
-                </div>
-                {/* <Cajita /> */}
-                <Nasa />
-            </div>
+            
         </div>
     )
 }

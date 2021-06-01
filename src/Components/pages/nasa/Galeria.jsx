@@ -1,23 +1,35 @@
-import { Box, Grid, Typography, Container } from '@material-ui/core';
-import React, { useEffect, useState } from 'react'
 import '@fontsource/roboto';
 import { styled } from '@material-ui/core/styles';
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { compose, spacing, palette } from '@material-ui/system';
+import { Box, Grid, Typography, Container } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 
 //rfce [] {} # {/**/}
+ /*Estilos*/
+ const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
+    },
+  }));
 
 function Galeria(props) {
 
-    const [date, setDete] = useState(new Date()) 
-
+    /*variables*/
     let fechaHoy = new Date()
-
     let hoy = ""
 
+    /*constantes*/
+    const [date, setDete] = useState(new Date()) 
     const [urlImg, setUrlImg] = useState()
-
     const [title, setTitle] = useState()
-    
+    const [descripcion, setDescripcion] = useState("")
+    const Box = styled('div')(compose(spacing, palette))
+
     /*consulta a la API*/
     useEffect(() => {
 
@@ -39,6 +51,7 @@ function Galeria(props) {
                 .then(data => {
                     setUrlImg(data.hdurl)
                     setTitle(data.title)
+                    setDescripcion(data.explanation)
                     //console.log(data.hdurl)
             })
             .catch(err => {
@@ -46,9 +59,11 @@ function Galeria(props) {
         })
        }, [props.fecha]);
 
-       const Box = styled('div')(compose(spacing, palette))
+       /*Estilos*/
+       const classes = useStyles();
 
     return (
+
         <Grid container >
             <Grid item xs={12} sm={12} md={12}  style={{ padding: 5 , textAlign: "center", margin: "0 auto"}}>
 
@@ -62,9 +77,10 @@ function Galeria(props) {
                     Imagen del dia
                 </Typography>
                 <hr></hr>
-                {/*Imagen*/}
                 
                 <Container fixed>
+
+                    {/*Descripcion, titulo*/}
                     <Typography
                         variant="h6" 
                         color="initial"
@@ -75,22 +91,42 @@ function Galeria(props) {
                         {title}
                     </Typography>
                     
-                    <Box xs={12} >
-                        <Box  xs={4} >
+                    {/*Imagen a la izquierda, descripcion a la derecha*/}
+                    {/*Imagen*/}
+                    <div className={classes.root} xs={12}>
+                        <Box  xs={4} align="left" mr={4}>
                             <a target="_blank" href="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY" >
-                                <img src={urlImg} alt=""  style={{ maxWidth: "600px", maxHeight: "600px", borderRadius: 8}}/>
+                                <img src={urlImg} alt=""  style={{ maxWidth: "550px", maxHeight: "550px", borderRadius: 8}}/>
                             </a>
-                            <div className="desc">Add a description of the image here</div>
+                            <div className="desc"></div>
                         </Box>
+                        
+                        <Paper xs={12}>
+                            <Box>
+                            <Typography 
+                                variant="h5"
+                                color="initial"
+                                align="left"
+                                display="initial"
+                                style={{ marginBottom: "20px", marginTop: "20px", marginLeft: "20px"}}
+                            >
+                                Descripcion
+                            </Typography>
+                            <Typography 
+                                variant="h9"
+                                color="initial"
+                                align="left"
+                                display="initial"
+                                style={{ marginBottom: "20px", marginTop: "20px", marginLeft: "20px"}}
+                            >
+                                <p>{descripcion}</p>
+                            </Typography>
+                            </Box>
+                        </Paper>
+                        
+                    {/*Descripcion*/} 
+                    </div>
 
-                        <Box  xs={4} >
-                            <a target="_blank" href="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY" >
-                                <img src={urlImg} alt=""  style={{ maxWidth: "600px", maxHeight: "600px", borderRadius: 8}}/>
-                            </a>
-                            <div className="desc">Add a description of the image here</div>
-                        </Box>
-                    </Box>
-                    
                 </Container>
             </Grid>
         </Grid>
