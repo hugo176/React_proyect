@@ -64,8 +64,7 @@ function Formulario(props) {
                                     }}
                                 />
                             </Grid>
-                        </MuiPickersUtilsProvider>
-
+                        </MuiPickersUtilsProvider>    
                         {/*Boton buscar
                         <Button 
                             className={classes.botonBuscarStyle}

@@ -44,9 +44,9 @@ function Nasa() {
             </Typography>
 
             {/*Boton buscar*/}
-            <Formulario getFecha = {(fecha) => setFecha(fecha)}/> 
+            <Formulario getFecha = {(date) => setFecha(date)}/> 
             <Galeria fecha={fecha}/>
-            {console.log(fecha)}
+            {/*console.log(fecha)*/}
           </Grid>
         </ThemeProvider>
     )

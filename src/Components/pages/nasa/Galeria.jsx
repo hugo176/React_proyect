@@ -8,20 +8,25 @@ import { compose, spacing, palette } from '@material-ui/system';
 
 function Galeria(props) {
 
-    
+    const [date, setDete] = useState(new Date()) 
 
-    const [fecha, setFecha] = useState() 
+    const fecha = new Date()
+
+    let dia = fecha.getDate()
+    let mes = fecha.getMonth()
+    let año = fecha.getFullYear()
+
+    let hoy = "{}-{}-{}"
 
     const [urlImg, setUrlImg] = useState()
 
+    console.log(hoy)
     /*consulta a la API*/
     useEffect(() => {
-        fetch("https://api.nasa.gov/planetary/apod?api_key=fMVhXiSx4z8QjcizgxcteRshLWqacfa2G69acNHS")
+        fetch("https://api.nasa.gov/planetary/apod?api_key=fMVhXiSx4z8QjcizgxcteRshLWqacfa2G69acNHS&date="+hoy)
             .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     setUrlImg(data.hdurl)
-                    console.log(fecha)
             })
             .catch(err => {
                 console.log("Error al cargar la imagen")
@@ -52,7 +57,6 @@ function Galeria(props) {
                     </a>
                     <div class="desc">Add a description of the image here</div>
                 </Box>
-                
             </Grid>
         </Grid>
        
