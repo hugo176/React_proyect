@@ -26,7 +26,7 @@ function Formulario(props) {
 
     /*texto: el texto se actualiza cada vez que se produce un cambio en el campo*/
     const [selectedDate, setSelectedDate] = React.useState(new Date());
-
+    props.getFecha(selectedDate)
      /*manejador del click sobre el boton buscar
      const handleOnClickButton = () => {
         console.log(selectedDate)

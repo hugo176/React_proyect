@@ -19,7 +19,7 @@ export const Lista = () => {
             <List component="nav">
 
                 {/*Home*/}
-                <ListItem button="true">
+                <ListItem button="true" autoFocus="true">
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>

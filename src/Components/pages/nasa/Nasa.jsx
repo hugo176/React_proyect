@@ -10,6 +10,7 @@ import theme from "../../themeConfig"
 import Formulario from "./Formulario"
 import { useState } from "react"
 import Galeria from "./Galeria"
+import Logo from "./Imagenes/astronauta.png"
 
 //rfce [] {} # {/**/}
 const useStyles = makeStyles((theme) => ({
@@ -39,14 +40,18 @@ function Nasa() {
             <Typography 
               variant="h1" 
               color="initial"
-              align="center">
-              Nasa
+              align="center"
+              title={"NASA"}
+            >
+              <p>NASA
+                <img src={Logo}  style={{ margin: "0 auto", width: "50px"}}/>
+              </p>
             </Typography>
 
             {/*Boton buscar*/}
             <Formulario getFecha = {(date) => setFecha(date)}/> 
             <Galeria fecha={fecha}/>
-            {/*console.log(fecha)*/}
+            {console.log(fecha)}
           </Grid>
         </ThemeProvider>
     )

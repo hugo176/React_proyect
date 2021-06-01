@@ -10,23 +10,36 @@ function Galeria(props) {
 
     const [date, setDete] = useState(new Date()) 
 
-    const fecha = new Date()
+    let fechaHoy = new Date()
 
-    let dia = fecha.getDate()
-    let mes = fecha.getMonth()
-    let año = fecha.getFullYear()
-
-    let hoy = "{}-{}-{}"
+    let hoy = ""
 
     const [urlImg, setUrlImg] = useState()
 
-    console.log(hoy)
+    const [title, setTitle] = useState()
+    
     /*consulta a la API*/
     useEffect(() => {
+
+        if(props.fecha == undefined){
+            console.log("Fecha indefinido")
+            let dia = fechaHoy.getDate()
+            let mes = fechaHoy.getMonth() + 1
+            let año = fechaHoy.getFullYear()
+            hoy = año + "-" + mes + "-" + dia
+    
+        }else{
+            hoy = props.fecha.getFullYear() + "-" + (props.fecha.getMonth() + 1) + "-" + props.fecha.getDate()
+            console.log("Fecha correcta")
+            console.log(props.fecha.getDate())
+        }
+
         fetch("https://api.nasa.gov/planetary/apod?api_key=fMVhXiSx4z8QjcizgxcteRshLWqacfa2G69acNHS&date="+hoy)
             .then(res => res.json())
                 .then(data => {
                     setUrlImg(data.hdurl)
+                    setTitle(data.title)
+                    //console.log(data.hdurl)
             })
             .catch(err => {
                 console.log("Error al cargar la imagen")
@@ -37,7 +50,7 @@ function Galeria(props) {
 
     return (
         <Grid container >
-            <Grid item xs={12} sm={8} md={8}  style={{ padding: 5 , textAlign: "center", margin: "0 auto"}}>
+            <Grid item xs={12} sm={12} md={12}  style={{ padding: 5 , textAlign: "center", margin: "0 auto"}}>
 
                 {/*Encabezado*/}
                 <Typography
@@ -48,15 +61,37 @@ function Galeria(props) {
                     style={{ marginBottom: "20px"}}>
                     Imagen del dia
                 </Typography>
-
+                <hr></hr>
                 {/*Imagen*/}
                 
-                <Box>
-                    <a target="_blank" href="img_forest.jpg" >
-                        <img src={urlImg} alt="Forest"  style={{ maxWidth: "600px", maxHeight: "600px"}}/>
-                    </a>
-                    <div class="desc">Add a description of the image here</div>
-                </Box>
+                <Container fixed>
+                    <Typography
+                        variant="h6" 
+                        color="initial"
+                        align="left"
+                        display="initial"
+                        style={{ marginBottom: "20px", marginTop: "20px"}}
+                    >
+                        {title}
+                    </Typography>
+                    
+                    <Box xs={12} >
+                        <Box  xs={4} >
+                            <a target="_blank" href="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY" >
+                                <img src={urlImg} alt=""  style={{ maxWidth: "600px", maxHeight: "600px", borderRadius: 8}}/>
+                            </a>
+                            <div className="desc">Add a description of the image here</div>
+                        </Box>
+
+                        <Box  xs={4} >
+                            <a target="_blank" href="https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY" >
+                                <img src={urlImg} alt=""  style={{ maxWidth: "600px", maxHeight: "600px", borderRadius: 8}}/>
+                            </a>
+                            <div className="desc">Add a description of the image here</div>
+                        </Box>
+                    </Box>
+                    
+                </Container>
             </Grid>
         </Grid>
        
